@@ -20,7 +20,7 @@ public class shipShoot : MonoBehaviour {
 			canFire = false;
 			StartCoroutine ("reload");
 			GameObject temp = Instantiate (bullet, transform.position, bullet.transform.rotation) as GameObject;
-			temp.GetComponent<Rigidbody2D> ().AddForce (temp.transform.forward * 2000);
+			temp.GetComponent<Rigidbody2D> ().AddForce (Vector3.right * 1000);
 			AudioSource.PlayClipAtPoint (yo, transform.position);
 		}
 	}
