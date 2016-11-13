@@ -4,15 +4,15 @@ using System.Collections;
 public class DamageOnCollision2 : MonoBehaviour
 {
 
-    GameObject scoreUITextGO;
+//    GameObject scoreUITextGO;
     
 
     int GameScore = 1;
 
     void Start()
     {
-        scoreUITextGO = GameObject.FindGameObjectWithTag("ScoreHolder2");
-        print(scoreUITextGO);
+//        scoreUITextGO = GameObject.FindGameObjectWithTag("ScoreHolder2");
+//        print(scoreUITextGO);
 
     }
 
@@ -33,7 +33,7 @@ public class DamageOnCollision2 : MonoBehaviour
 
 
 
-        scoreUITextGO.GetComponent<ScoreTracker2>().addScore(10);
+//        scoreUITextGO.GetComponent<ScoreTracker2>().addScore(10);
 
     }
     
