@@ -7,12 +7,16 @@ public class IceCreamController : MonoBehaviour
     public static float speed = 0f;
     public static float idleSpeed = 0f;
     public static float moveSpeed = 15f;
-
-
+	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
+	Transform playerGraphics; //Reference to graphics so we can change direction
     public GameObject bulletPrefab;
 
     public float fireDelay = 0.25f;
     float cooldownTimer = 0;
+
+	public bool _Direction;
+
+	public GunRotation _Gun;
 
 
     // Use this for initialization
@@ -20,6 +24,17 @@ public class IceCreamController : MonoBehaviour
     {
 
     }
+
+	void Awake()
+	{
+		playerGraphics = transform.FindChild ("firecracker");
+
+		if (playerGraphics == null)
+		{
+			Debug.LogError ("no graphics object as a child of player");
+		}
+
+	}
 
     // Update is called once per frame
     void Update()
@@ -87,8 +102,45 @@ public class IceCreamController : MonoBehaviour
     {
         speed = moveSpeed;
         transform.position += dir.normalized * speed * Time.deltaTime;
+
+
         //transform.position += new Vector3.u
 
         //transform.position = transform.position + new Vector3.dir.normalized * speed * Time.deltaTime;
     }
+
+	public void Flipp() {
+
+		_Direction = !_Direction;
+
+		Vector3 theScale = playerGraphics.localScale;
+
+		theScale.x *= -1f;
+
+		playerGraphics.localScale = theScale;
+	}
 }
+
+//	void Move (float move)
+//	{
+//		if (move > 0 && !m_FacingRight) {
+//			// ... flip the player.
+//			Flip ();
+//		}
+//		// Otherwise if the input is moving the player left and the player is facing right...
+//		else if (move < 0 && m_FacingRight) {
+//			// ... flip the player.
+//			Flip ();
+//		}
+//	}
+//
+//	private void Flip()
+//	{
+//		// Switch the way the player is labelled as facing.
+//		m_FacingRight = !m_FacingRight;
+//
+//		// Multiply the player's x local scale by -1.
+//		Vector3 theScale = playerGraphics.localScale;
+//		theScale.x *= -1;
+//		playerGraphics.localScale = theScale;
+//	}
