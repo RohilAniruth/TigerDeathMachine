@@ -9,9 +9,17 @@ public class GunRotation : MonoBehaviour {
 
 	public IceCreamController p_Script;
 
-//	public Camera cam;
+    public GameObject bullet;
 
-	public int posOffset;
+    public Transform spawnPoint;
+
+    private float angle;
+
+    public float bulletSpeed;
+
+    //	public Camera cam;
+
+    public int posOffset;
 
 	Transform playerGraphics;
 
@@ -40,7 +48,7 @@ public class GunRotation : MonoBehaviour {
 		mousePos.x = mousePos.x - objectPos.x;
 		mousePos.y = mousePos.y - objectPos.y;
 
-		float angle = Mathf.Atan2 (mousePos.y, mousePos.x) * Mathf.Rad2Deg;
+		angle = Mathf.Atan2 (mousePos.y, mousePos.x) * Mathf.Rad2Deg;
 
 		//Debug.Log(angle + "");
 
@@ -57,45 +65,56 @@ public class GunRotation : MonoBehaviour {
 		}
 
 		transform.rotation = Quaternion.Euler (new Vector3 (0, 0, angle + posOffset)); //rotating
+                                                                                       /*
+                                                                                       if (angle > 0f && angle < 100f || angle < 0f && angle > -90f) {		//angles on the "right" side of the 360 degrees
 
-		if (angle > 0f && angle < 100f || angle < 0f && angle > -90f) {		//angles on the "right" side of the 360 degrees
+                                                                                           if (direction == false) {
 
-			if (direction == false) {
+                                                                                               direction = true;
 
-				direction = true;
+                                                                                               Flip ();
+                                                                                           }
+                                                                                       }
 
-				Flip ();
-			}
-		}
+                                                                                       if (angle > 100f && angle < 180f || angle < -90f && angle > -180f)
 
-		if (angle > 100f && angle < 180f || angle < -90f && angle > -180f)
-		
-			if (direction == true) {
+                                                                                           if (direction == true) {
 
-				direction = false;
+                                                                                               direction = false;
 
-				Flip ();
-			}
-		}
+                                                                                               Flip ();
+                                                                                           }
+                                                                                       */
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            Shoot();
+        }
+    }
 
-		void Flip() {
+    void Flip() {
 
-			if (direction == false && p_Script._Direction == true || direction == true && p_Script._Direction == false)
+		//	if (direction == false && p_Script._Direction == true || direction == true && p_Script._Direction == false)
 
-			{ p_Script.Flipp(); }
+			//{ p_Script.Flipp(); }
 
 			hitPoint.Rotate(Vector3.forward * 180); //might change
 
-			Vector3 theScale = playerGraphics.localScale;
+		//	Vector3 theScale = playerGraphics.localScale;
 
-				theScale.x *= -1;
+			//	theScale.x *= -1;
 
-			playerGraphics.localScale = theScale;
+			// playerGraphics.localScale = theScale;
 
 		}
+    void Shoot() {
+        GameObject go = Instantiate(bullet, spawnPoint.position, transform.rotation) as GameObject;
+        float x_vel = Mathf.Cos(angle * Mathf.Deg2Rad) * bulletSpeed;
+        float y_vel = Mathf.Sin(angle * Mathf.Deg2Rad) * bulletSpeed;
+        go.GetComponent<Rigidbody2D>().velocity = new Vector2(x_vel, y_vel);
+    }
 
-	}
+}
 
 
 

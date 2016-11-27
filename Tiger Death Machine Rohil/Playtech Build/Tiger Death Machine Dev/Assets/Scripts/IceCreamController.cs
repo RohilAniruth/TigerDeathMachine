@@ -8,8 +8,9 @@ public class IceCreamController : MonoBehaviour
     public static float idleSpeed = 0f;
     public static float moveSpeed = 15f;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
-	Transform playerGraphics; //Reference to graphics so we can change direction
     public GameObject bulletPrefab;
+
+    private SpriteRenderer firecrackerSprite;
 
     public float fireDelay = 0.25f;
     float cooldownTimer = 0;
@@ -27,12 +28,7 @@ public class IceCreamController : MonoBehaviour
 
 	void Awake()
 	{
-		playerGraphics = transform.FindChild ("firecracker");
-
-		if (playerGraphics == null)
-		{
-			Debug.LogError ("no graphics object as a child of player");
-		}
+        firecrackerSprite = GetComponent<SpriteRenderer>();
 
 	}
 
@@ -95,7 +91,7 @@ public class IceCreamController : MonoBehaviour
          //   Instantiate(bulletPrefab, transform.position, transform.rotation);
         }
 
-
+        checkPlayerDirection();
     }
 
     void MoveIce(Vector3 dir)
@@ -109,15 +105,15 @@ public class IceCreamController : MonoBehaviour
         //transform.position = transform.position + new Vector3.dir.normalized * speed * Time.deltaTime;
     }
 
-	public void Flipp() {
-
-		_Direction = !_Direction;
-
-		Vector3 theScale = playerGraphics.localScale;
-
-		theScale.x *= -1f;
-
-		playerGraphics.localScale = theScale;
+	public void checkPlayerDirection() {
+        if (Camera.main.WorldToScreenPoint(transform.position).x < Input.mousePosition.x)
+        {
+            firecrackerSprite.flipX = false;
+        } else
+        {
+            firecrackerSprite.flipX = true;
+        }
+        
 	}
 }
 
