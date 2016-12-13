@@ -10,6 +10,8 @@ public class IceCreamController : MonoBehaviour
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     public GameObject bulletPrefab;
 
+	public bool warping = false;
+
     private SpriteRenderer firecrackerSprite;
 
     public float fireDelay = 0.25f;
