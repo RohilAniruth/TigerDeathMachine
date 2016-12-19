@@ -40,27 +40,27 @@ public class IceCreamPush : MonoBehaviour
 		if (Input.GetKey(KeyCode.LeftArrow) ||
 			Input.GetKey(KeyCode.A))
 		{
-			MoveIce(Vector3.left);
+			GetComponent<Rigidbody2D> ().AddForce (new Vector2 (-5, 0));
 			//transform.position += new Vector3.left.normalized * speed * Time.deltaTime;
 		}
 		if (Input.GetKey(KeyCode.RightArrow) ||
 			Input.GetKey(KeyCode.D))
 		{
-			MoveIce(Vector3.right);
+			GetComponent<Rigidbody2D> ().AddForce (new Vector2 (5, 0));
 			//transform.position += new Vector3.right.normalized * speed * Time.deltaTime;
 
 		}
 		if (Input.GetKey(KeyCode.UpArrow) ||
 			Input.GetKey(KeyCode.W))
 		{
-			MoveIce(Vector3.up);
+			GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, 5));
 			//transform.position += new Vector3.up.normalized * speed * Time.deltaTime;
 
 		}
 		if (Input.GetKey(KeyCode.DownArrow) ||
 			Input.GetKey(KeyCode.S))
 		{
-			MoveIce(Vector3.down);
+			GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, -5));
 			//transform.position += new Vector3.down.normalized * speed * Time.deltaTime;
 		}
 

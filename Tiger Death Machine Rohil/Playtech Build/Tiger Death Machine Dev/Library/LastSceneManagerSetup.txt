@@ -1,4 +1,5 @@
 sceneSetups:
-- path: Assets/TelekenesisTest1.unity
+- path: C:/Users/Conor/OneDrive/Documents/Unity/Parsons/Term1/Week9-12/ConorBuildThis/TigerDeathSaved/HUMAN
+    BUILD/Assets/Scenes/TigerDeathBuild.unity
   isLoaded: 1
   isActive: 1
